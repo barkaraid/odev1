@@ -22,9 +22,9 @@ public class Main {
 		frame.setSize(900,900);
 		frame.setVisible(true);
 		
-		map.setF(null);
-		map.setP(null);
-		map.setG(null);
+		map.setF(window.getF());
+		map.setP(window.getP());
+		map.setG(window.getG());
 	}
 		
 }

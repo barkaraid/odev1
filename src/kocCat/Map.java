@@ -48,13 +48,13 @@ public class Map extends JPanel{
 		return (W*N)/2;
 	}
 
-	public int setF(int val) {
+	public void setF(int val) {
 		f=val;
 	}
-	public int setP(int val) {
+	public void setP(int val) {
 		p=val;
 	}
-	public int setG(int val) {
+	public void setG(int val) {
 		g=val;
 	}
 	

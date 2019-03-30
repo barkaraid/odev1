@@ -16,6 +16,18 @@ public class Window extends JFrame {
 	private final JTextField frame3;
 	private final JButton start;
 	public int f,g,p;
+	
+	public int getF() {
+		return f;
+	}
+
+	public int getG() {
+		return g;
+	}
+
+	public int getP() {
+		return p;
+	}
 
 	public Window() {
 		super();
