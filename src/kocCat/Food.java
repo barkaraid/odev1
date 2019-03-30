@@ -1,7 +1,7 @@
 package kocCat;
 import java.awt.*;
 
-public class Food implements Drawable{
+public class Food extends Drawable{
 	public void draw(Graphics g, int x, int y){
 		
 	}

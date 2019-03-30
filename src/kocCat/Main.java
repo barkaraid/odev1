@@ -22,7 +22,8 @@ public class Main {
 		frame.setSize(900,900);
 		frame.setVisible(true);
 		
-		System.out.println(map.getMiddlePoint());
+		
+		
 	}
-
+		
 }

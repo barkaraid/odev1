@@ -3,13 +3,25 @@ package kocCat;
 import java.awt.*;
 
 public class Fruit extends Food{
+	
+	public int a=5;
 	@Override
 	public void draw(Graphics g , int x , int y) {
-		int a=0;
-		g.drawOval(a,a,x,y);
+		while(true) {
+			if(a<=30)
+				g.setColor(Color.BLUE);
+			if(a>30)
+				g.setColor(Color.GREEN);
+			g.fillOval(x-a/2, y-a/2, a, a);
+			if(a==65) break;
+			g.clearRect(x-a/2, y-a/2, a, a);
+			a++;
+			
+		}
 	}
 	@Override
 	public void grow (Graphics g) {
 		
 	}
+	
 }
