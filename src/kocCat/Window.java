@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.util.*;
 
 public class Window extends JFrame {
+	
 	private final JLabel fruit;
 	private final JLabel poison;
 	private final JLabel ghost;
@@ -51,15 +52,12 @@ public class Window extends JFrame {
 		add(frame3);
 		start = new JButton("start");
 		add(start);
-		
-
-
 	}
 
 	private class FrameHandler implements ActionListener{
 		@Override 
 		public void actionPerformed(ActionEvent event) {
-			String string = "";
+			
 
 			if(event.getSource() == frame1) {
 				f = Integer.parseInt(frame1.getText());

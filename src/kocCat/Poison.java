@@ -2,10 +2,16 @@ package kocCat;
 import java.awt.*;
 
 public class Poison extends Food{
+	public Poison(int xPos, int yPos) {
+		super(xPos, yPos);
+		// TODO Auto-generated constructor stub
+	}
 	@Override
 	public void draw (Graphics g, int x, int y) {
+		
 		int width = 8;
 		int height = 6;
+		
 		while(true) {
 			if(width<=28) 
 				g.setColor(Color.YELLOW);
@@ -22,5 +28,6 @@ public class Poison extends Food{
 	public void grow (Graphics g) {
 		
 	}
+	
 	
 }

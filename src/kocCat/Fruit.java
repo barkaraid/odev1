@@ -4,6 +4,10 @@ import java.awt.*;
 
 public class Fruit extends Food{
 	
+	public Fruit(int xPos, int yPos) {
+		super(xPos, yPos);
+		// TODO Auto-generated constructor stub
+	}
 	public int a=5;
 	@Override
 	public void draw(Graphics g , int x , int y) {
