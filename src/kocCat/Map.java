@@ -3,14 +3,13 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Map extends JPanel{
-	
+	public int W = 84;
+	public int N = 10;
+
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		this.setBackground(Color.WHITE);
-		
-		int W = 84;
-		int N = 10;
 		int x = 0;
 		int y = 0;
 		
@@ -23,7 +22,8 @@ public class Map extends JPanel{
 			x=0;
 			y+=W;
 		}
-		
-		
+	}
+	public int getMiddlePoint() {
+		return (W*N)/2;
 	}
 }
