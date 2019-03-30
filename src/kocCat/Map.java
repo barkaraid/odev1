@@ -6,6 +6,9 @@ import javax.swing.*;
 public class Map extends JPanel{
 	public int W = 84;
 	public int N = 10;
+	int f;
+	int p;
+	int g;
 	
 	@Override
 	public void paintComponent(Graphics g) {
@@ -43,6 +46,16 @@ public class Map extends JPanel{
 	}
 	public int getMiddlePoint() {
 		return (W*N)/2;
+	}
+
+	public int setF(int val) {
+		f=val;
+	}
+	public int setP(int val) {
+		p=val;
+	}
+	public int setG(int val) {
+		g=val;
 	}
 	
 }
