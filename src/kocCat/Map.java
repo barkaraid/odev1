@@ -32,6 +32,10 @@ public class Map extends JPanel{
 		
 		int xf = random.nextInt(N) ;
 		int yf = random.nextInt(N) ;
+		while(xf==xp && yf==yp) {
+			xf = random.nextInt(N) ;
+			yf = random.nextInt(N) ;
+		}
 		Food fruit = new Fruit();
 		fruit.draw(g, W*xf+W/2, W*yf+W/2);
 		
