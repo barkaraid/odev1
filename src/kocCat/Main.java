@@ -14,17 +14,20 @@ public class Main {
 		window.setSize(900,900);
 		window.setVisible(true);
 		
-		JFrame frame = new JFrame();
+		/*JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Map map = new Map();
 		map.setBackground(Color.YELLOW);
-		frame.add(map);
-		frame.setSize(900,900);
-		frame.setVisible(true);
 		
 		map.setF(window.getF());
 		map.setP(window.getP());
 		map.setG(window.getG());
+		
+		frame.add(map);
+		frame.setSize(900,900);
+		frame.setVisible(true);*/
+		
+		
 	}
 		
 }

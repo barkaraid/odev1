@@ -3,20 +3,21 @@ import javax.swing.*;
 import java.awt.*;
 
 public abstract class Drawable  {
-	public int xPos, yPos;
-	
-	public int getxPos() {
+	public double xPos, yPos;
+	public int width;
+	public int height;
+	public double getxPos() {
 		return xPos;
 	}
 
-	public int getyPos() {
+	public double getyPos() {
 		return yPos;
 	}
 
 	public void draw(Graphics g, int x, int y) {
 	}
 
-	public Drawable(int xPos, int yPos) {
+	public Drawable(double xPos, double yPos) {
 		this.xPos = xPos;
 		this.yPos = yPos;
 	}

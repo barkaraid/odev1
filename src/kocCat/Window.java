@@ -9,13 +9,13 @@ import java.util.*;
 
 public class Window extends JFrame {
 	
-	private final JLabel fruit;
-	private final JLabel poison;
-	private final JLabel ghost;
-	private final JTextField frame1;
-	private final JTextField frame2;
-	private final JTextField frame3;
-	private final JButton start;
+	private JLabel fruit;
+	private JLabel poison;
+	private JLabel ghost;
+	private JTextField frame1;
+	private JTextField frame2;
+	private JTextField frame3;
+	private JButton start;
 	public int f,g,p;
 	
 	public int getF() {
@@ -51,23 +51,30 @@ public class Window extends JFrame {
 		frame3 = new JTextField(5);
 		add(frame3);
 		start = new JButton("start");
+		ButtonHandler handle = new ButtonHandler();
 		add(start);
+		start.addActionListener(handle);
+		
 	}
 
-	private class FrameHandler implements ActionListener{
+	private class ButtonHandler implements ActionListener{
 		@Override 
 		public void actionPerformed(ActionEvent event) {
 			
-
-			if(event.getSource() == frame1) {
-				f = Integer.parseInt(frame1.getText());
-			}
-			if(event.getSource()==frame2) {
-				p = Integer.parseInt(frame2.getText());
-			}
-			if(event.getSource()==frame3) {
-				g = Integer.parseInt(frame3.getText());
-			}
+			
+			f = Integer.parseInt(frame1.getText());
+			p = Integer.parseInt(frame2.getText());
+			g = Integer.parseInt(frame3.getText());
+			JFrame frame = new JFrame();
+			Map map = new Map();
+			map.setF(f);
+			map.setP(p);
+			map.setG(g);
+			map.setBackground(Color.WHITE);
+			
+			frame.add(map);
+			frame.setSize(900, 900);
+			frame.setVisible(true);
 		}
 	}
 }
