@@ -8,9 +8,9 @@ public class Ghost extends Drawable{
 		super(xPos, yPos);
 		// TODO Auto-generated constructor stub
 	}
-	public void draw (Graphics g, int x, int y) {
+	/*public void draw (Graphics g, int x, int y) {
 		
-	}
+	}*/
 	public void move(Graphics g, int x, int y) {
 		g.clearRect(x-width/2, y-height/2, width, height);
 		x+=xVel;

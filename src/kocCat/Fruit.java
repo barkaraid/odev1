@@ -36,7 +36,7 @@ public class Fruit extends Food{
 		g.clearRect(x-a/2, y-a/2, a, a);
 		a+=5;
 		if(age<10) {
-			g.drawRect(x-a/2, y-a/2, a, a);
+			g.fillOval(x-a/2, y-a/2, a, a);
 			age++;
 		}
 	}

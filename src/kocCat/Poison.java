@@ -13,21 +13,30 @@ public class Poison extends Food{
 	public void draw (Graphics g, int x, int y) {
 		
 		
-		g.setColor(Color.YELLOW);
-		g.fillRect(x-width/2, y-height/2, width, height);
-		
-		
-	}
-	@Override
-	public void grow (Graphics g, int x, int y) {
 		if(age<10) {
 			g.setColor(Color.YELLOW);
 		}else if(age>=10) {
 			g.setColor(Color.RED);
 		}
-		width+=4;
-		height+=3;
-		g.fillRect(x-width/2, y-height/2, width, height);
+		if(age<20) {
+			width+=4;
+			height+=3;
+		}
+		age++;
+		
+	}
+	@Override
+	public void grow (Graphics g, int x, int y) {
+		g.clearRect(x-width/2, y-height/2, width, height);
+		if(age<10) {
+			g.setColor(Color.YELLOW);
+		}else if(age>=10) {
+			g.setColor(Color.RED);
+		}
+		if(age<20) {
+			width+=4;
+			height+=3;
+		}
 		age++;
 	}
 	

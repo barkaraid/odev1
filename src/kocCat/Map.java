@@ -70,9 +70,27 @@ public class Map extends JPanel {
 			frui.get(i).draw(g, (int)(W*frui.get(i).getxPos())+W/2,  (int)(W*frui.get(i).getyPos())+W/2);
 		}
 		
-		while(true) {
+		Timer timer = new Timer(1000,new ActionListener() {
+			 public void actionPerformed(ActionEvent event) {
+				 		
+						for(int i=0;i<p;i++) {	
+							System.out.println("grow");
+							pois.get(i).grow(g,(int)(W*pois.get(i).getxPos())+W/2,  (int)(W*pois.get(i).getyPos())+W/2);
+							System.out.println("aaaaa");
+							pois.get(i).draw(g, (int)(W*pois.get(i).getxPos())+W/2,  (int)(W*pois.get(i).getyPos())+W/2);
+							System.out.println(pois.get(i).height);
+						}
+						for(int i=0;i<f;i++) {						
+							System.out.println("gg");
+							frui.get(i).grow(g,(int)(W*frui.get(i).getxPos())+W/2, (int)( W*frui.get(i).getyPos())+W/2);
+							System.out.println("ff");
+						}
+	            }
+		});
+		
+		timer.start();
 			
-			cat.move(g);
+			/*cat.move(g);
 			cat.xPos += cat.xVel/W;
 			cat.yPos += cat.yVel/W;
 			for(int i=0;i<ash;i++) {
@@ -96,8 +114,8 @@ public class Map extends JPanel {
 			for(int i=0;i<f;i++) {						//drawing fruits
 				frui.get(i).grow(g,(int)(W*frui.get(i).getxPos())+W/2, (int)( W*frui.get(i).getyPos())+W/2);
 			}
-
-		}
+*/
+		
 	}
 
 	//Helper Methods
