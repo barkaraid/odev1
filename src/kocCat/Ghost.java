@@ -11,11 +11,5 @@ public class Ghost extends Drawable{
 	/*public void draw (Graphics g, int x, int y) {
 		
 	}*/
-	public void move(Graphics g, int x, int y) {
-		g.clearRect(x-width/2, y-height/2, width, height);
-		x+=xVel;
-		y+=yVel;
-		draw(g,x,y);
-		
-	}
+
 }

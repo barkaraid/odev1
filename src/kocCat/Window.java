@@ -65,16 +65,21 @@ public class Window extends JFrame {
 			f = Integer.parseInt(frame1.getText());
 			p = Integer.parseInt(frame2.getText());
 			g = Integer.parseInt(frame3.getText());
-			JFrame frame = new JFrame();
-			Map map = new Map();
-			map.setF(f);
-			map.setP(p);
-			map.setG(g);
-			map.setBackground(Color.WHITE);
 			
-			frame.add(map);
-			frame.setSize(900, 900);
-			frame.setVisible(true);
+			
+			if(p>0 && f>0 && p>0) {
+				Everything done = new Everything(f,p,g);
+
+				done.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				done.setSize(900,900);
+				done.setVisible(true);
+			}
+			else {
+				System.out.println("Invalid values");
+				System.out.println("number of fruits poisons and ghosts"
+						+ " must be larger than 0");
+				throw new IllegalArgumentException();
+			}
 		}
 	}
 }

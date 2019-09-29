@@ -9,7 +9,7 @@ import java.util.Random;
 import javax.swing.*;
 
 
-public class Map extends JPanel {
+public class Map extends JPanel implements KeyListener, ActionListener{
 	public int W = 84;
 	public int N = 10;
 	private int f;
@@ -22,7 +22,16 @@ public class Map extends JPanel {
 	private ArrayList<Casper> casper= new ArrayList<Casper>();
 	private int ash, dol, casp;
 	Random random = new Random();
-	private Timer timer = null;
+	int xc = W*N/2;
+	int yc = W*N/2;
+	String str = "left";
+	int constant = 10;
+	
+	KocCat cat = new KocCat((xc-W/2)/W,(yc-W/2)/W);
+	public Map() {
+		
+		
+	}
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -38,13 +47,15 @@ public class Map extends JPanel {
 			xm=0;
 			ym+=W;
 		}
-		int xc;
-		int yc;
-		xc = getMiddlePoint();
-		yc = getMiddlePoint();
-		KocCat cat = new KocCat(xc,yc);
-		cat.draw(g, W*N/2, W*N/2);
-
+		
+		
+		
+		addKeyListener(this);
+		setFocusable(true);
+		setFocusTraversalKeysEnabled(false);
+		cat.draw(g, (W*cat.xPos)+W, (W*cat.yPos)+W,W,N);
+		cat.setxPos(cat.getxPos()+(cat.xVel)/W);
+		cat.setyPos(cat.getyPos()+cat.yVel/W);
 		generatePoison();
 		generateFruit();
 		generateGhost();
@@ -52,69 +63,29 @@ public class Map extends JPanel {
 		generateDolly();
 		generateCasper();
 		
+
 		for(int i=0;i<ash;i++) {					//drawing ashes
-			ashh.get(i).draw(g, (int)((W*ashh.get(i).getxPos()))+W/2, (int)(W*ashh.get(i).getyPos())+W/2);
+			ashh.get(i).draw(g, ((W*ashh.get(i).getxPos()))+W/2, (W*ashh.get(i).getyPos())+W/2,W,N);
+			ashh.get(i).setxPos(ashh.get(i).getxPos()+(ashh.get(i).xVel)/W);
 		}
 		for(int i=0;i<dol;i++) {					//drawing dollies
-			doll.get(i).draw(g, (int)(W*doll.get(i).getxPos())+W/2, (int)(W*doll.get(i).getyPos())+W/2);
+			doll.get(i).draw(g, (W*doll.get(i).getxPos())+W/2, (W*doll.get(i).getyPos())+W/2,W,N);
+			doll.get(i).setyPos(doll.get(i).getyPos()+(doll.get(i).yVel)/W);
 		}
 		for(int i=0;i<casp;i++) {					//drawing caspers
-			casper.get(i).draw(g, (int)(W*casper.get(i).getxPos())+W/2, (int)(W*casper.get(i).getyPos())+W/2);
+			casper.get(i).draw(g, (W*casper.get(i).getxPos())+W/2, (W*casper.get(i).getyPos())+W/2,W,N);
+			casper.get(i).setxPos(casper.get(i).getxPos()+(casper.get(i).xVel)/W);
+			casper.get(i).setyPos(casper.get(i).getyPos()+(casper.get(i).yVel)/W);
 		}
 		for(int i=0;i<p;i++) {								//drawing poisons
-			pois.get(i).draw(g, (int)(W*pois.get(i).getxPos())+W/2,  (int)(W*pois.get(i).getyPos())+W/2);
+			pois.get(i).draw(g,(int)(W*pois.get(i).getxPos())+W/2, (int)(W*pois.get(i).getyPos())+W/2);
 			
 		}
-
 		for(int i=0;i<f;i++) {						//drawing fruits
-			frui.get(i).draw(g, (int)(W*frui.get(i).getxPos())+W/2,  (int)(W*frui.get(i).getyPos())+W/2);
+			frui.get(i).draw(g, (int)(W*frui.get(i).getxPos())+W/2,  (int)(W*frui.get(i).getyPos())+W/2,N);
 		}
 		
-		Timer timer = new Timer(1000,new ActionListener() {
-			 public void actionPerformed(ActionEvent event) {
-				 		
-						for(int i=0;i<p;i++) {	
-							System.out.println("grow");
-							pois.get(i).grow(g,(int)(W*pois.get(i).getxPos())+W/2,  (int)(W*pois.get(i).getyPos())+W/2);
-							System.out.println("aaaaa");
-							pois.get(i).draw(g, (int)(W*pois.get(i).getxPos())+W/2,  (int)(W*pois.get(i).getyPos())+W/2);
-							System.out.println(pois.get(i).height);
-						}
-						for(int i=0;i<f;i++) {						
-							System.out.println("gg");
-							frui.get(i).grow(g,(int)(W*frui.get(i).getxPos())+W/2, (int)( W*frui.get(i).getyPos())+W/2);
-							System.out.println("ff");
-						}
-	            }
-		});
 		
-		timer.start();
-			
-			/*cat.move(g);
-			cat.xPos += cat.xVel/W;
-			cat.yPos += cat.yVel/W;
-			for(int i=0;i<ash;i++) {
-				ashh.get(i).move(g, (int)(W*ashh.get(i).getxPos())+W/2, (int)(W*ashh.get(i).getyPos())+W/2);
-				ashh.get(i).xPos+=ashh.get(i).xVel/W;
-				ashh.get(i).yPos+=ashh.get(i).yVel/W;
-			}
-			for(int i=0;i<dol;i++) {
-				doll.get(i).move(g,(int)(W*doll.get(i).getxPos())+W/2, (int)(W*doll.get(i).getyPos())+W/2);
-				doll.get(i).xPos+=doll.get(i).xVel/W;
-				doll.get(i).yPos+=doll.get(i).yVel/W;
-			}
-			for(int i=0;i<casp;i++) {
-				casper.get(i).move(g,(int)(W*casper.get(i).getxPos())+W/2, (int)(W*casper.get(i).getyPos())+W/2);
-				casper.get(i).xPos+=casper.get(i).xVel/W;
-				casper.get(i).yPos+=casper.get(i).yVel/W;
-			}
-			for(int i=0;i<p;i++) {								//drawing poisons
-				pois.get(i).grow(g,(int)(W*pois.get(i).getxPos())+W/2,  (int)(W*pois.get(i).getyPos())+W/2);
-			}
-			for(int i=0;i<f;i++) {						//drawing fruits
-				frui.get(i).grow(g,(int)(W*frui.get(i).getxPos())+W/2, (int)( W*frui.get(i).getyPos())+W/2);
-			}
-*/
 		
 	}
 
@@ -136,13 +107,12 @@ public class Map extends JPanel {
 		while(pois.size()<p) {
 			int xp = random.nextInt(N);
 			int yp = random.nextInt(N);
-			System.out.println(xp +" a " + yp);
+			
 
 			for(Poison temp: pois) {
 				if(xp == temp.getxPos() && yp == temp.getyPos()) {
 					xp = random.nextInt(N);
 					yp = random.nextInt(N);
-					System.out.println(xp + " " + yp +" a");
 				}
 			}
 			for(Fruit temp: frui) {
@@ -155,7 +125,6 @@ public class Map extends JPanel {
 
 			}
 			Poison poison = new Poison(xp,yp);
-			System.out.println("bob");
 			pois.add(poison);
 
 		}
@@ -164,80 +133,66 @@ public class Map extends JPanel {
 		while(frui.size()<f) {
 			int xp = random.nextInt(N);			//x position that determines the box in which the object is generated	
 			int yp = random.nextInt(N);			//y position that determines the box in which the object is generated
-			System.out.println(xp +" a " + yp);
 
 			for(Poison temp: pois) {
 				if(xp == temp.getxPos() && yp == temp.getyPos()) {
 					xp = random.nextInt(N);
 					yp = random.nextInt(N);
-					System.out.println(xp + " " + yp +" a");
+					
 				}
 			}
 			for(Fruit temp: frui) {
 				if(xp == temp.getxPos() && yp == temp.getyPos()) {
 					xp = random.nextInt(N);
 					yp = random.nextInt(N);
-					System.out.println(xp + " " + yp + " b");
+				
 				}	
 			}
 
 			Fruit fruit = new Fruit(xp,yp);
-			System.out.println("bob");
+			
 			frui.add(fruit);
 
 		}			
 	}
 	public void generateGhost() {			//determining the number of each ghost type
+		
 		if(gho%3==0) {
 			ash=gho/3;
+			
 			dol=gho/3;
+			
 			casp=gho/3;
+			
 		}else if(gho%3==1){
-			int m = random.nextInt(3);
-			ash=gho/3;
+			
+			ash=gho/3+1;
+			
 			dol=gho/3;
+			
 			casp=gho/3;
-			switch(m) {
-			case(0):
-				ash++;
-			break;
-			case(1):
-				dol++;
-			break;
-			case(2):
-				casp++;
-			break;
-			}
+			
+			
 		}
 		else {
-			int m = random.nextInt(3);
+			
 			ash=gho/3+1;
 			dol=gho/3+1;
-			casp=gho/3+1;
-			switch(m) {
-			case(0):
-				ash--;
-			break;
-			case(1):
-				dol--;
-			break;
-			case(2):
-				casp--;
-			break;
-			}
+			casp=gho/3;
+			
 		}
 	}
 	public void generateAsh() {
 		while(ashh.size()<ash) {
 			int xp = random.nextInt(N);
 			int yp = random.nextInt(N);
-			System.out.println(xp +" a " + yp);
+			
 
 			for(Ash temp: ashh) {
 				if(xp == temp.getxPos() && yp == temp.getyPos()) {
 					xp = random.nextInt(N);
 					yp = random.nextInt(N);
-					System.out.println(xp + " " + yp +" a");
+					
 				}
 			}
 			Ash ash = new Ash(xp,yp);
@@ -248,13 +203,13 @@ public class Map extends JPanel {
 		while(doll.size()<dol) {
 			int xp = random.nextInt(N);
 			int yp = random.nextInt(N);
-			System.out.println(xp +" a " + yp);
+			
 
 			for(Dolly temp: doll) {
 				if(xp == temp.getxPos() && yp == temp.getyPos()) {
 					xp = random.nextInt(N);
 					yp = random.nextInt(N);
-					System.out.println(xp + " " + yp +" a");
+					
 				}
 			}
 			Dolly dolly = new Dolly(xp,yp);
@@ -265,45 +220,72 @@ public class Map extends JPanel {
 		while(casper.size()<casp) {
 			int xp = random.nextInt(N);
 			int yp = random.nextInt(N);
-			System.out.println(xp +" a " + yp);
+			
 
 			for(Casper temp: casper) {
 				if(xp == temp.getxPos() && yp == temp.getyPos()) {
 					xp = random.nextInt(N);
 					yp = random.nextInt(N);
-					System.out.println(xp + " " + yp +" a");
+					
 				}
 			}
 			Casper cas = new Casper(xp,yp);
 			casper.add(cas);
 		}
 	}
-	/*public void actionPerformed(ActionEvent e, Graphics g, KocCat cat) {
-		cat.move(g);
-		cat.xPos += cat.xVel/W;
-		cat.yPos += cat.yVel/W;
-		for(int i=0;i<ash;i++) {
-			ashh.get(i).move(g, (int)(W*ashh.get(i).getxPos())+W/2, (int)(W*ashh.get(i).getyPos())+W/2);
-			ashh.get(i).xPos+=ashh.get(i).xVel/W;
-			ashh.get(i).yPos+=ashh.get(i).yVel/W;
+
+	public void up() {
+		cat.str="up";
+		cat.yVel-=cat.cons;
+	}
+	public void down() {
+		cat.str="down";
+		cat.yVel+=cat.cons;
+	}
+	public void left() {
+		cat.str="left";
+		cat.xVel-=cat.cons;
+	}
+	public void right() {
+		cat.str="right";
+		cat.xVel+= cat.cons;
+	}
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		int code = e.getKeyCode();
+		if(code == KeyEvent.VK_DOWN) {
+			down();
 		}
-		for(int i=0;i<dol;i++) {
-			doll.get(i).move(g,(int)(W*doll.get(i).getxPos())+W/2, (int)(W*doll.get(i).getyPos())+W/2);
-			doll.get(i).xPos+=doll.get(i).xVel/W;
-			doll.get(i).yPos+=doll.get(i).yVel/W;
+		if(code == KeyEvent.VK_UP) {
+			up();
 		}
-		for(int i=0;i<casp;i++) {
-			casper.get(i).move(g,(int)(W*casper.get(i).getxPos())+W/2, (int)(W*casper.get(i).getyPos())+W/2);
-			casper.get(i).xPos+=casper.get(i).xVel/W;
-			casper.get(i).yPos+=casper.get(i).yVel/W;
+		if(code == KeyEvent.VK_RIGHT) {
+			right();
 		}
-		for(int i=0;i<p;i++) {								//drawing poisons
-			pois.get(i).grow(g,(int)(W*pois.get(i).getxPos())+W/2,  (int)(W*pois.get(i).getyPos())+W/2);
+		if(code == KeyEvent.VK_LEFT) {
+			left();
 		}
-		for(int i=0;i<f;i++) {						//drawing fruits
-			frui.get(i).grow(g,(int)(W*frui.get(i).getxPos())+W/2, (int)( W*frui.get(i).getyPos())+W/2);
-		}
-	}*/
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		cat.cons = 10;
+		
+	}
 
 	
 }

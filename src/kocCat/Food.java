@@ -9,8 +9,10 @@ public class Food extends Drawable{
 	public void draw(Graphics g, int x, int y){
 		
 	}
-	public void grow(Graphics g, int x, int y) {
+	public void draw(Graphics g, int x, int y, int N) {
+		// TODO Auto-generated method stub
 		
 	}
+	
 	
 }

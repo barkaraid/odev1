@@ -3,6 +3,9 @@ package kocCat;
 import javax.swing.JFrame;
 import java.awt.*;
 
+
+//THIS CODE IS MY OWN WORK. I DID NOT CONSULT TO ANY  PROGRAM WRITTEN BY OTHER STUDENTS. 
+//I READ AND FOLLOWED THE GUIDELINE GIVEN IN THE PROGRAMMING ASSIGNMENT. NAME: Arda Bakýr__________
 public class Main {
 
 	public static void main(String[] args) {
@@ -14,18 +17,7 @@ public class Main {
 		window.setSize(900,900);
 		window.setVisible(true);
 		
-		/*JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Map map = new Map();
-		map.setBackground(Color.YELLOW);
 		
-		map.setF(window.getF());
-		map.setP(window.getP());
-		map.setG(window.getG());
-		
-		frame.add(map);
-		frame.setSize(900,900);
-		frame.setVisible(true);*/
 		
 		
 	}
